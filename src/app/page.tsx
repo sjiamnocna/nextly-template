@@ -3,7 +3,7 @@
 import React from 'react'
 
 import Hero from "../components/hero";
-import Navbar from "../components/navbar";
+import Navbar, { NavItem } from "../components/navbar";
 import { Metadata } from "next";
 import SectionTitle from '@/components/sectionTitle';
 import Benefits, { benefitOne, benefitTwo } from '@/components/benefits';
@@ -13,19 +13,43 @@ import Cta from '@/components/cta';
 import Footer from '@/components/footer';
 
 export const metadata: Metadata = {
-  title: 'Nextly - Free Nextjs & TailwindCSS Landing Page Template',
-  description: 'Nextly is a free landing page template built with next.js & Tailwind CSS',
+  title: 'NexTSly - Free Nextjs & TailwindCSS Landing Page Template',
+  description: 'NexTSly is a free landing page template built with latest next.js (with Typescript) & Tailwind CSS',
 }
+
+const topMenuContent: NavItem[] = [
+  {
+    title: "Product",
+    url: "#",
+  },
+  {
+    title: "Company",
+    url: "#",
+  },
+  {
+    title: "Blog",
+    url: "#",
+  },
+  {
+    title: "About",
+    url: "#",
+  },
+  {
+    title: "Contact us",
+    url: "#",
+  },
+
+]
 
 const Home = () => {
   return (
     <>
-      <Navbar />
+      <Navbar items={topMenuContent} />
       <Hero />
       <SectionTitle
-        pretitle="Nextly Benefits"
+        pretitle="NexTSly Benefits"
         title=" Why should you use this landing page">
-        Nextly is a free landing page & marketing website template for startups
+        NexTSly is a free landing page & marketing website template for startups
         and indie projects. Its built with Next.js & TailwindCSS. And its
         completely open-source.
       </SectionTitle>

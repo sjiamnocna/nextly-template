@@ -5,29 +5,9 @@ import React from 'react';
 import Link from "next/link";
 import ThemeChanger from "./DarkSwitch";
 import { Disclosure } from "@headlessui/react";
+import Navbar from './navbar';
 
-export type NavItem = {
-  title: string;
-  url: string;
-}
-
-export type NavItemWithChildren = NavItem & {
-  children?: NavItem[];
-}
-
-export type NavbarProps = {
-  items: NavItemWithChildren[];
-}
-
-const Navbar = ({items}: NavbarProps): JSX.Element => {
-  const navigation = [
-    "Product",
-    "Features",
-    "Pricing",
-    "Company",
-    "Blog",
-  ];
-
+const Header = (): JSX.Element => {
   return (
     <div className="w-full">
       <nav className="container relative flex flex-wrap items-center justify-between p-8 mx-auto lg:justify-between xl:px-0">
@@ -37,9 +17,18 @@ const Navbar = ({items}: NavbarProps): JSX.Element => {
             <>
               <div className="flex flex-wrap items-center justify-between w-full lg:w-auto">
                 <Link href="/">
-                  <p className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
+                  <span className="flex items-center space-x-2 text-2xl font-medium text-indigo-500 dark:text-gray-100">
+                    <span>
+                      {/*        <Image
+                        src="../assets/img/quizcraft_logo_gray.svg"
+                        alt="N"
+                        width="32"
+                        height="32"
+                        className="w-8"
+                      /> */}
+                    </span>
                     <span>NexTSly</span>
-                  </p>
+                  </span>
                 </Link>
 
                 <Disclosure.Button
@@ -66,16 +55,10 @@ const Navbar = ({items}: NavbarProps): JSX.Element => {
                 </Disclosure.Button>
 
                 <Disclosure.Panel className="flex flex-wrap w-full my-5 lg:hidden">
-                  <>
-                    {items.map((item, index) => (
-                      <Link key={index} href="/" className="w-full px-4 py-2 -ml-4 text-gray-500 rounded-md dark:text-gray-300 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 dark:focus:bg-gray-800 focus:outline-none">
-                        {item.title}
-                      </Link>
-                    ))}
+                    
                     <Link href="/" className="w-full px-6 py-2 mt-3 text-center text-white bg-indigo-600 rounded-md lg:ml-5">
                       Get Started
                     </Link>
-                  </>
                 </Disclosure.Panel>
               </div>
             </>
@@ -83,17 +66,32 @@ const Navbar = ({items}: NavbarProps): JSX.Element => {
         </Disclosure>
 
         {/* menu  */}
-        <div className="hidden text-center lg:flex lg:items-center">
-          <ul className="items-center justify-end flex-1 pt-6 list-none lg:pt-0 lg:flex">
-            {items.map((item, index) => (
-              <li className="mr-3 nav__item" key={index}>
-                <Link href={item.url} className="inline-block px-4 py-2 text-lg font-normal text-gray-800 no-underline rounded-md dark:text-gray-200 hover:text-indigo-500 focus:text-indigo-500 focus:bg-indigo-100 focus:outline-none dark:focus:bg-gray-800">
-                  {item.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Navbar items={[
+          {
+            title: "Product",
+            url: "#",
+            children: [
+              { title: "Features", url: "#" },
+              { title: "Pricing", url: "#" },
+              { title: "Integrations", url: "#" }
+            ]
+          },
+          {
+            title: "Company",
+            url: "#",
+            children: [
+              { title: "About", url: "#" },
+              { title: "Careers", url: "#" },
+              { title: "Contact", url: "#" }
+            ]
+          },
+          {
+            title: "Blog",
+            url: "#",
+          }
+        ]} />
+
+        {/* CTA */}
 
         <div className="hidden mr-3 space-x-4 lg:flex nav__item">
           <Link href="/" className="px-6 py-2 text-white bg-indigo-600 rounded-md md:ml-5">
@@ -107,4 +105,4 @@ const Navbar = ({items}: NavbarProps): JSX.Element => {
   );
 }
 
-export default Navbar;
+export default Header;
