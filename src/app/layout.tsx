@@ -22,7 +22,9 @@ const MyApp: React.FC = ({ children }: PropsWithChildren) => {
           "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
         )}>
-        <ThemeProvider attribute="class">
+        <ThemeProvider
+        attribute="class"
+        defaultTheme="dark">
           {children}
         </ThemeProvider>
       </body>
